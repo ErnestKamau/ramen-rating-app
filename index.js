@@ -33,9 +33,9 @@ function handleClick(ramen){
 }
 
 function addSubmitListener(){
-    const forms = document.getElementById("new-ramen");
+    const form = document.getElementById("new-ramen");
 
-    forms.addEventListener("submit", (events) => {
+    form.addEventListener("submit", (events) => {
         events.preventDefault()
 
         const name = events.target.name.value;
