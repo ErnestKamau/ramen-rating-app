@@ -1,7 +1,8 @@
 const ramens = [
    { id: 1, name: "Shoyu Ramen", restaurant: "Ichiran", image: "shoyu.jpg", rating: 5, comment: "Delicious!" },
-   { id: 2, name: "Miso Ramen", restaurant: "Menya", image: "miso.jpg", rating: 4, comment: "Very flavorful!" },
-   { id: 3, name: "Tonkotsu Ramen", restaurant: "Ramen-ya", image: "tonkotsu.jpg" }
+   { id: 2, name: "Vegetarian Miso Ramen", restaurant: "Menya", image: "Vegetarian Miso Ramen.jpeg", rating: 5, comment: "Healthy!" },
+   { id: 3, name: "naruto Ramen", restaurant: "Menya", image: "naruto.jpg", rating: 4, comment: "Very flavorful!" },
+   { id: 4, name: "Tonkotsu Ramen", restaurant: "Ramen-ya", image: "Tonkotsu.jpeg" }
 ];
 
 function displayRamens(){
@@ -32,9 +33,38 @@ function handleClick(ramen){
 }
 
 function addSubmitListener(){
-    document.getElementById("new-ramen").addEventListener("submit", (events) => {
+    const forms = document.getElementById("new-ramen");
+
+    forms.addEventListener("submit", (events) => {
         events.preventDefault()
 
-        
+        const name = events.target.name.value;
+        const restaurant = events.target.restaurant.value;
+        const image = events.target.image.value;
+        const rating = events.target.rating.value;
+        const comment = events.target.comment.value;
+
+        const newRamenEntry = {
+            id: ramens.length + 1,
+            name,
+            restaurant,
+            image,
+            rating: rating ? parseInt(rating) : 0,
+            comment,
+        }
+
+        ramens.push(newRamenEntry);
+
+        displayRamens();
+
+        events.target.reset()
+
     });
 }
+
+function main (){
+    displayRamens();
+    addSubmitListener();
+}
+
+document.addEventListener("DOMContentLoaded", main);
